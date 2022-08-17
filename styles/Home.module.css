@@ -6,7 +6,6 @@
   margin-top: 2rem;
   display: flex;
   justify-content: space-between;
-
 }
 
 .logo_wrapper {
@@ -48,6 +47,10 @@
   gap: 1.5em;
   place-content: center;
   margin-bottom: 2rem;
+}
+
+.error_text {
+  text-align: center;
 }
 
 

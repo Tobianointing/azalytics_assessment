@@ -10,6 +10,10 @@
     transition: background 300ms ease-in-out 0s;
 }
 
+.card_link{
+    display: inherit;
+}
+
 .card:hover {
     background: #e0f5ea;
 }

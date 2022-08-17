@@ -1,7 +1,10 @@
 export interface Assets {
   assetId: string;
   URL: string;
-  logo: string;
+  logo: string | null;
   name: string;
-  available: string;
+  available: boolean;
 }
+
+
+
