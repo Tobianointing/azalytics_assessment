@@ -9,19 +9,22 @@ const Card: React.FC<Assets> = (props) => {
       `;
 
   return (
-    <a href={props.URL} className={cardStyles.card_link} target="_blank"  rel="noreferrer" >
+    <a href={props.URL} className={cardStyles.card_link} target="_blank" rel="noreferrer">
       <div className={cardStyles.card}>
-        <img
-          className={cardStyles.card_img}
-          src={props.logo ? props.logo : "/crypto-placeholder.jpg"}
-          alt={"asset-img"}
-        />
+        <div className={cardStyles.img_wrapper}>
+          <img
+            className={cardStyles.card_img}
+            src={props.logo ? props.logo : "/coin.png"}
+            alt={"asset-img"}
+          />
+        </div>
+
         <p className={cardStyles.card_text}>{props.name}</p>
         <div className={cardStatusStyle}>
           {props.available ? "Available" : "Unavailable"}
         </div>
       </div>
-     </a>
+    </a>
   );
 };
 
