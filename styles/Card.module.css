@@ -2,9 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     border: 1px solid #B7BECC;
     padding: 2em;
     border-radius: 10px;
+    cursor: pointer;
+    transition: background 300ms ease-in-out 0s;
+}
+
+.card:hover {
+    background: #e0f5ea;
 }
 
 .card_text {

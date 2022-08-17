@@ -2,15 +2,15 @@ import type { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import homeStyles from "../styles/Home.module.css"
-import cardStyles from "../styles/Card.module.css"
 import logo from "../public/logo.svg"
-import placeholder from "../public/crypto-placeholder.jpg"
 import { gql } from "graphql-request"
 import { GraphQLResponse } from "graphql-request/dist/types"
 import graphqlRequestClient from "../lib/clients/graphqlRequestClient"
 import { useQuery } from "react-query"
 import { Assets } from "../lib/interfaces/Assets"
 import React from "react"
+import Loader from "../components/Loader"
+import Card from "../components/Card"
 
 const GET_ALLASSEST_QUERY = gql`
   query GetAllAssets {
@@ -46,7 +46,7 @@ const Home: NextPage = () => {
 
   if (data) {
     assets = data.map((asset) => (
-      <AssestCard
+      <Card
         assetId={asset.assetId}
         key={asset.assetId}
         URL={asset.URL}
@@ -57,9 +57,6 @@ const Home: NextPage = () => {
     ))
   }
 
-  // const numbers = [1, 2, , 4, 5, 6, 7, 8, 9, 10]
-
-  // const cards = numbers.map((i) => <AssestCard key={i} />)
 
   return (
     <div className={homeStyles.container}>
@@ -82,7 +79,7 @@ const Home: NextPage = () => {
 
       <main>
         <div className={homeStyles.hero}>List of Algorand Standard Assets on ASAlytics</div>
-        {true ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <section className={homeStyles.assets}>
@@ -95,29 +92,3 @@ const Home: NextPage = () => {
 }
 
 export default Home
-
-const AssestCard: React.FC<Assets> = (props) => {
-  let cardStatusStyle = `
-      ${cardStyles.card_status} ${!props.available ? cardStyles.unavailable : ""}
-    `
-
-  return (
-    <div className={cardStyles.card}>
-      <img
-        className={cardStyles.card_img}
-        src={props.logo ? props.logo : "/crypto-placeholder.jpg"}
-        alt={"asset-img"}
-      />
-      <p className={cardStyles.card_text}>{props.name}</p>
-      <div className={cardStatusStyle}>{props.available ? "Available" : "Unavailable"}</div>
-    </div>
-  )
-}
-
-const Loader: React.FC = () => {
-  return (
-    <div className={homeStyles.loader_wrapper}>
-      <div className={homeStyles.loader}></div>
-    </div>
-  )
-}
